@@ -1,0 +1,539 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.background_img{
+    background-image: url(../assets/home_background.jpeg);
+    height: 42rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home_background {
+  width: -webkit-fill-available;
+}
+
+.background_txt{
+    width: 46rem;
+}
+
+.background_txt .child_1 {
+  font-family: "Lexend";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 4px;
+  color: #f2bc1b;
+}
+
+.child_2 {
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 110%;
+  letter-spacing: -4px;
+  color: #ffffff;
+}
+
+.child_3 {
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  color: #f4f4f4;
+}
+
+.child_4 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 150%;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  padding-top: 60px;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+div.child_4 > div:first-child{
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid #f4f4f4;
+    padding-left: 0!important;
+}
+.char{
+    font-weight: lighter;
+  color: #f4f4f4;
+
+}
+
+.background_txt_child button, .refer_txt button, .shop {
+  background: #17af26;
+  border: none;
+  border-radius: 100px;
+  padding: 1rem 3.5rem;
+  color: #ffffff;
+}
+.refer_txt button{
+    padding: 0.8rem 3rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.cta{
+    background-color: #F2F6F4;
+}
+
+.shipping, .security, .pricing{
+    font-size: 0.9rem;
+    line-height: 150%;
+    text-align: left;
+}
+
+.shipping h1, .security h1, .pricing h1{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.shop_shipping h1, .shop_security h1, .shop_pricing h1 {
+        font-size: 1.2rem;
+        font-weight: 600;
+    }
+
+.cta_child img{
+    width: 5rem;
+    height: 5rem;
+}
+.shop_cta_child img{
+    width: 3rem;
+    height: 3rem;
+}
+
+.mygreen{
+    background: #f8fff8;
+}
+
+.dispensary .row1 p, .testimonials .row1 p, .order h4{
+    font-size: 2.6rem;
+    font-weight: bold;
+    width: 35rem;
+    margin: auto;
+}
+.order h4{
+    width: 40rem;
+    color: white;
+}
+.order p{
+    color: #9D9EA2;
+    width: 44rem;
+    font-size: 0.95rem;
+    margin: auto;
+    text-align: center;
+}
+.step p, .g{
+    color: #9D9EA2;
+    font-size: 0.9rem;
+    
+}
+.steps img{
+    width: 7.5rem
+}
+.dispensary .row2 h5, .testimonials .row2 h5{
+    background: #F2F6F4;
+    width: fit-content;
+    margin: auto;
+    border-radius: 3rem;
+    border: 1px solid black;
+}
+.weed1, .weed2, .weed3, .category_container{
+    background: #05422C;
+    border-radius: 16px;
+    color: #FFFFFF;    
+}
+.shop_weed1{
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+
+}
+
+.my, .weed3{
+    max-height: 21rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.weed2{
+    background: #F2F6F4;
+}
+.weed3, .category_container{
+    background: white;
+    border: 1px solid #F4F4F4;
+}
+.category_container img{
+    width: 18rem;
+    height: 14rem;
+}
+.do{
+    max-width: none;
+}
+.weed1 a{
+    color: #17AF26;
+}
+
+.weed .row3 p{
+    font-size: 1.3rem;
+}
+.weed1_txt, .voted_txt, .tesimony_txt{
+    width: auto;
+    margin: auto;
+}
+.weed1 img{
+    width: 10.5rem;
+}
+.weed1_txt h4{
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+.voted_txt h4, .testimony_txt h4{
+    font-size: 1.6rem;
+font-weight: 500;
+text-align: left;
+border-bottom: 0.5px solid #346654;
+;
+    padding-bottom: 1.7rem;
+}
+
+.voted_txt h5, .testimony_txt h5{
+    font-size: 0.8rem;
+    color: #c3c3c3;
+
+}
+
+.voted_txt p, .testimony_txt p{
+    font-size: 1.7rem;
+    font-weight: 500;
+    text-align: left;
+    color: #82bba6;
+}
+
+.testimony_txt p{
+    color: black;
+    font-size: 0.9rem;
+}
+
+.weed1_txt p {
+    font-size: 0.9rem;
+    font-weight: lighter;
+}
+
+.weed2 img{
+    width: 9.5rem;
+}
+.weed2_txt{
+    width: 100%;
+}
+
+.weed2_txt h4{
+font-weight: 500;
+font-size: 1.05rem;
+line-height: 150%;
+color: #1A1E26;
+}
+
+.weed2_txt p{
+font-weight: 300;
+font-size: 0.9rem;
+line-height: 150%;
+color: #9D9EA2;
+margin: 0;
+}
+
+.ingredient p{
+    width: fit-content;
+    background: #F2F6F4;
+    border-radius: 0.2rem;
+    margin: auto;
+    font-weight: 400;
+    color: #05422C;
+    font-size: 0.75rem;
+}
+
+.w-6{
+    width: 6rem;
+}
+.w-6 div{
+color: #9D9EA2;
+font-size: 0.8rem;
+}
+.w-6 h5{
+    font-size: 1rem;
+    color: #EB2606;
+
+}
+.weed2_txt button {
+    background: #17af26;
+    border: none;
+    border-radius: 100px;
+    padding: 0.4rem 1.5rem;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .i {
+    color: #346654;
+  }
+  .testimony_name{
+    border-bottom: 1px solid #C8C9CB;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+  .testimony_name p{
+    font-size: 0.8rem;
+    color: black;
+  }
+  .testimony_name img{
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+ 
+ .refer{
+    /* background-image: url(../assets/refer.png); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
+    width: 100%;
+    height: 16rem;
+    padding: 0 8rem;
+ } 
+
+ .refer_txt{
+position: absolute;
+top: 4rem;
+font-size: 2.5rem;
+/* left: 11rem; */
+font-weight: 700;
+color: white;
+/* width: 62rem; */
+ }
+
+ .refer_txt h4{
+    font-size: 2.5rem;
+    font-weight: 700;
+ }
+ .refer_txt p{
+    font-size: 1.3rem;
+    font-weight: 400;
+ }
+
+ .refer_txt span{
+    font-weight: 700;
+ }
+ .steps{
+    background: #01100B;
+
+ }
+ .logo img{
+    width: 9rem;
+ }
+ .logo p, ul{
+    font-size: 0.9rem;
+    color: #9D9EA2;
+ }
+ .myborder{
+    border-top-color: #9D9EA2!important;
+ }
+ .steps2{
+    background: rgb(1,16,11);
+    background: linear-gradient(180deg, rgba(1,16,11,1) 0%, rgba(1,16,11,1) 56%, rgb(2 36 17) 100%);
+}
+
+.mysz{
+    font-size: 0.7rem;
+    margin: 0;
+    margin-left: -0.5rem;
+    margin-top: 0.7rem;
+}
+.mygap{
+    gap: 3rem;
+}
+.mygap2{
+    gap: 21rem
+}
+.weedIcon{
+    color: #081408;
+}
+.mix{
+    background: conic-gradient(from 180deg at 50% 50%, #648A7C -4.67deg, #05422C 299.08deg, #648A7C 355.33deg, #05422C 659.08deg);
+}
+.pointer{
+    cursor: pointer;
+}
+.w-5rem{
+width: 5rem;
+}
+.fit{
+    width: fit-content;
+}
+.fr{
+    font-size: 1rem;
+}
+.register-bg{
+    background: #5f9269;
+}
+.register-bg:focus{
+    background: #35613e!important;
+    box-shadow: none;
+}
+.decoration-none{
+    text-decoration: none!important;
+}
+
+.toast-message {
+    font-style: italic;
+    font-weight: 600;
+    color: black;
+}
+
+.toggle{
+    display: flex;
+    background: white;
+    border: 1px solid lightgray;
+    border-radius: 6px;
+    align-items: center;
+}
+
+.ml1{
+    margin-left: -1.5rem;
+}
+
+@media only screen and (max-width: 770px) {
+    .background_txt {
+        padding: 2rem!important;
+        width: 100%!important;
+    }
+   
+    .child_2 {
+        font-weight: 500;
+        font-size: 2rem;
+        letter-spacing: 3px;
+    }
+    .child_3 {
+        font-size: 1.7rem;
+    }
+    .child_4{
+        font-size: 1.3rem;
+    }
+    .background_txt_child button, .shop {
+        padding: 0.7rem 3rem;
+    }
+    
+   
+    .steps img{
+        width: 4.5rem;
+    }
+    .step p {
+        font-size: 0.6rem;
+    }
+     .weed2 img, .weed1 img{
+        width: 6.5rem;
+    }
+    .mygap2{
+        gap: 0;
+    }
+    .refer{
+    padding: 0 2rem;
+    height: 13rem;
+
+    }
+    .refer_txt{
+        display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+        top: 3rem;
+    }
+    .refer_txt h4{
+        font-size: 1.8rem;
+        font-weight: 500;
+    }
+    .refer_txt button{
+        padding: 0.4rem 2rem;
+    }
+    .choose{
+        font-size: 2rem!important;
+    }
+    .background_img{
+        background-image: url(../assets/home_background_responsive.png);
+        height: 42rem;
+    }
+    .mf{
+        font-size: 1.05rem;
+            display: block!important;
+    }
+ 
+  }
+
+  @media only screen and (max-width: 440px) {
+
+    .child_2 {
+        letter-spacing: 1px;
+    }
+    .child_3{
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+    }
+    .child_4{
+        font-weight: 400;
+        padding-top: 20px;
+        font-size: 1.2rem;
+    }
+    .background_txt_child button, .shop {
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+    }
+    .background_txt_child{
+        position: relative;
+        top: -5rem;
+    }
+    .weed2_txt h4, .weed1_txt h4{
+        font-size: 0.9rem;
+    }
+    .dispensary .row p{
+        font-size: 0.7rem;
+    }
+    .weed2_txt button {
+        padding: 0.3rem 1rem;
+        font-size: 0.6rem;
+    }
+    .w-6 h5 {
+        font-size: 0.7rem;
+    }
+    .steps img{
+        width: 3.5rem;
+    }
+    .step p {
+        font-size: 0.6rem;
+    }
+    .one{
+        font-size: 1rem;
+    }
+    
+   
+    .choose{
+        font-size: 1.89rem!important;
+    }
+    .shop_shipping h1, .shop_security h1, .shop_pricing h1 {
+        font-size: 0.87rem;
+    }
+    .shop_cta_child img {
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    
+    .fr{
+        font-size: 0.5rem;
+    }
+    .w-5rem{
+        width: 3rem;
+    }
+    
+  }

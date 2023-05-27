@@ -1,0 +1,70 @@
+import React from "react";
+import Logo2 from '../assets/Logo2.png'
+import { FaCannabis } from "react-icons/fa";
+import { SiFacebook, SiInstagram, SiTwitter } from "react-icons/si";
+
+
+
+export default function Mail() {
+
+
+  return (
+    <div className="img register-bg py-md-5 py-4 js-fullheight bimage">
+      <div class="container px-3 px-md-0">
+        <div class="align-items-center bg-light min-vh-100 py-4 rounded-3">
+          <div class="col-md-12">
+            <section className="ftco-section">
+              <div className="container">
+                <div className="justify-content-center">
+                  <div className="px-md-5 px-3 col-md-10 col m-auto">
+                    <div className="login-wrap p-0">
+                      <img src={Logo2} className="d-flex m-auto pb-4"/>
+                      
+                      <h4 className="py-2 fs-3 fst-italic text-center d-flex justify-content-center align-items-center">
+                      Welcome Pal! 
+                      <FaCannabis/>
+                      </h4>
+                      <p className="text-center">
+                      We are here take high-end online shopping to a whole new level! 🌿🛒
+                      </p>
+                      <p>
+                      Congratulations on joining our smokin' community of cannabis connoisseurs! We're thrilled to have you on board, and we promise you won't be leafing disappointed. 🌿💨
+                      </p>
+                      <p>
+                      At BudBazaar, we've curated a mind-blowing selection of top-grade buds, concentrates, edibles, and accessories that will elevate your cannabis experience to new heights. Whether you're a seasoned stoner or a curious newbie, we've got something that'll make you go, "Whoa, dude!" 🤯👌
+                      </p>
+                      <p>Oh, and did we mention our delivery is faster than your friend who always has the munchies? Seriously, our shipping is so swift, it's like teleporting your favorite goodies straight to your doorstep. We're practically wizards in the art of cannabis delivery! 🚀📦</p>
+                      <p>
+                      But wait, there's more! As a new member, you're entitled to some mind-boggling perks. Get ready to feast your eyes on exclusive discounts, limited-time promotions, and secret surprise gifts that'll make you feel like you've won the cannabis lottery. 🎁💸
+                      </p>
+                      <p>
+                      We also take pride in our "Pot Power Guides," where we share enlightening knowledge about different strains, consumption methods, and the latest trends in the cannabis universe. Think of us as your Mary Jane encyclopedia, here to keep you in the loop and help you navigate the world of green goodness with style. 📚🌿
+                      </p>
+                      <p>
+                      So buckle up, grab your favorite munchies, and get ready for an out-of-this-world cannabis shopping experience. Welcome to BudBazaar, where the grass is always greener and the vibes are always higher. Let's blaze a trail of happiness together! 🚀💚
+                      </p>
+                      <p>
+                      P.S. Don't forget to spread the love and share BudBazaar with your buds. Because life's too short to keep the good stuff to yourself! 🌍🌿
+                      </p>
+                      {/* <GLogin/> */}
+                      <br />
+                      <p className="ta text-center fw-bold">Our socials</p>
+                      <div className="d-flex justify-content-center gap-2">
+                      <a href="#"><SiFacebook style={{ width: '2rem', height: '1.7rem', color : 'blue'}}/></a>
+                      <a href="#"><SiInstagram style={{ width: '2rem', height: '1.7rem', color : 'purple'}}/></a>
+                      <a href="#"><SiTwitter style={{ width: '2rem', height: '1.7rem', color : 'dodgerblue'}}/></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+
