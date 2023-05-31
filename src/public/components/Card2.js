@@ -6,7 +6,7 @@ import { addcart, getallItems } from "../utils/APIroutes";
 import { useCookies } from "react-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
 
-export default function Card2({ count, setCount }) {
+export default function Card2({ count, setCount, user_id }) {
   const [items, setItems] = useState([]);
   const [cookies] = useCookies(["id"]);
   const [item_sub, setItem_sub] = useState(0);
@@ -20,11 +20,11 @@ export default function Card2({ count, setCount }) {
   }, [items]);
 
   const addtocart = (item_id, item_name, item_img, price) => {
-    if (cookies.id) {
+    if (user_id) {
       setCount(+count + 1);
       setItem_sub(+price * countItem);
       const itemData = {
-        user_id: cookies.id,
+        user_id: user_id,
         item_id: item_id,
         item_name: item_name,
         item_img: item_img,
@@ -35,14 +35,14 @@ export default function Card2({ count, setCount }) {
 
       axios.post(addcart, itemData).then((response) => {});
     } else {
-      navigate("/login");
+      <Navigate to="/" replace />
     }
   };
 
   return (
     <div className="row">
       {items.map((item) => (
-        <div className="col-6 col-md-3 col-sm-6 pb-4">
+        <div className="col-6 col-md-3 col-sm-6 pb-4" key={item.item_id}>
           <div className="py-4 weed2">
             <img src={item.item_img} alt={item.item_name} />
           </div>

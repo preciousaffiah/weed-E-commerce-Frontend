@@ -10,8 +10,7 @@ import Footer from "../components/Footer";
 import Card2 from "../components/Card2";
 import { addcart, getItem } from "../utils/APIroutes";
 import Navbar from "../components/Navbar";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Navigate } from "react-router-dom";
 
 export default function Product({
   setUser_id,
@@ -32,10 +31,8 @@ export default function Product({
   const [item_may_relieve, setItem_may_relieve] = useState();
   const [item_sub, setItem_sub] = useState(0);
   const [countItem, setCountItem] = useState(1);
-  const [cookies] = useCookies(["id"]);
-  const navigate = useNavigate()
-
   const product_id = window.location.pathname.split("/").pop();
+
   useEffect(() => {
     axios.get(`${getItem}/${product_id}`).then((response) => {
       setItem(response.data.result[0]);
@@ -54,10 +51,10 @@ export default function Product({
 
 
   const addtocart = () => {
-   if (cookies.id) {
+   if (user_id) {
     setCount(+count + 1)
     const itemData = {
-      user_id: cookies.id,
+      user_id: user_id,
       item_id: item_id,
       item_name: item_name,
       item_img: item_img,
@@ -70,7 +67,7 @@ export default function Product({
       setItem(response.data.result[0]);
     });
   } else{
-    navigate("/login")
+    <Navigate to="/login" replace />
   }
   };
 
@@ -78,8 +75,8 @@ export default function Product({
     <div className="container-fluid p-0 text-center">
       <section>
         <Navbar
-        setUser_id={setUser_id}
-        user_id={user_id}
+          setUser_id={setUser_id}
+          user_id={user_id}
           cartCount={cartCount}
           setMycartCount={setMycartCount}
           count={count}

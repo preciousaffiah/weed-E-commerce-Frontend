@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../css/styles.css";
 import axios from "axios";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Logo2 from "../assets/Logo2.png";
 import { register } from "../utils/APIroutes";
 import { BiHide, BiShow } from "react-icons/bi";
@@ -16,8 +15,6 @@ export default function Register({ user_id, setUser_id }) {
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
-  const [cookies, setCookie] = useCookies(["id"]);
-  const navigate = useNavigate();
 
   const toastOptions = {
     position: "bottom-right",
@@ -28,7 +25,7 @@ export default function Register({ user_id, setUser_id }) {
     className: "toast-message",
   };
 
-  if (cookies.id) {
+  if (user_id) {
     return <Navigate to="/" replace />;
   }
 
@@ -47,10 +44,8 @@ export default function Register({ user_id, setUser_id }) {
           toast.error(response.data.message, toastOptions);
         } else {
           toast.success(response.data.message, toastOptions);
-          setCookie("id", response.data.insertResult.insertId);
           setUser_id(response.data.insertResult.insertId);
-          navigate("/");
-          console.log(response.data.insertResult.insertId);
+          localStorage.setItem('loggedInUser', JSON.stringify(user_id));
         }
       });
     } catch (err) {
@@ -74,7 +69,7 @@ export default function Register({ user_id, setUser_id }) {
                 <div className="row justify-content-center">
                   <div className="col-md-6 col-lg-5">
                     <div className="login-wrap p-0">
-                      <img src={Logo2} className="d-flex m-auto pb-4" />
+                      <img src={Logo2} alt='img' className="d-flex m-auto pb-4" />
 
                       <h3 className="py-2 fs-5 text-center">
                         Don't Have an account?
@@ -194,10 +189,10 @@ export default function Register({ user_id, setUser_id }) {
                             )}
                           </div>
                           <div className="form-group">
-                            {first_name == " " ||
-                            last_name == " " ||
-                            email == " " ||
-                            password == " " ||
+                            {first_name === " " ||
+                            last_name === " " ||
+                            email === " " ||
+                            password === " " ||
                             confirmPassword !== password ||
                             first_name.length < 1 ||
                             last_name.length < 1 ||
@@ -210,14 +205,12 @@ export default function Register({ user_id, setUser_id }) {
                                 </p>
                               </div>
                             ) : (
-                              <a>
                                 <button
                                   type="submit"
                                   className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
                                 >
                                   Register{" "}
                                 </button>
-                              </a>
                             )}
                           </div>
                         </div>
@@ -228,10 +221,8 @@ export default function Register({ user_id, setUser_id }) {
                       {/* <GLogin/> */}
                       <br />
                       <p className="ta text-center">Already have an account?</p>
-                      <Link to="/login" className="d-flex decoration-none">
-                        <a className="decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3">
+                      <Link to="/login" className="d-flex decoration-none decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3">
                           Login{" "}
-                        </a>
                       </Link>
                     </div>
                   </div>

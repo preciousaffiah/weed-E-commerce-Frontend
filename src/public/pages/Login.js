@@ -6,18 +6,13 @@ import Logo2 from "../assets/Logo2.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../utils/APIroutes";
-import { useCookies } from "react-cookie";
 import { BiHide } from "react-icons/bi";
 import { BiShow } from "react-icons/bi";
 
-export default function Login() {
+export default function Login({ user_id, setUser_id }) {
   const [passwordShown, setPasswordShown] = useState(false);
-
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
-
-  const [emailalreadyexists, setEmailalreadyexists] = useState(false);
-  const [cookies, setCookie] = useCookies(["id"]);
   const navigate = useNavigate();
 
   const toastOptions = {
@@ -28,12 +23,11 @@ export default function Login() {
     theme: "light",
     className: "toast-message",
   };
-  if (cookies.id) {
+  if (user_id) {
     return <Navigate to="/" replace />;
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
     const userData = {
       email: email,
       password: password,
@@ -44,8 +38,13 @@ export default function Login() {
           toast.error(response.data.message, toastOptions);
         } else {
           toast.success(response.data.message, toastOptions);
-          console.log(response.data.user.user_id);
-          setCookie("id", response.data.user.user_id);
+
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(response.data.user.user_id)
+          );
+          user_id = JSON.parse(localStorage.getItem("loggedInUser"));
+          window.location.reload();
           navigate("/");
         }
       });
@@ -62,15 +61,19 @@ export default function Login() {
 
   return (
     <div className="img register-bg py-md-5 py-0 js-fullheight bimage">
-      <div class="container px-0">
-        <div class="align-items-center bg-light min-vh-100 py-4 rounded-3">
-          <div class="col-md-12">
+      <div className="container px-0">
+        <div className="align-items-center bg-light min-vh-100 py-4 rounded-3">
+          <div className="col-md-12">
             <section className="ftco-section">
               <div className="container">
                 <div className="row justify-content-center">
                   <div className="col-md-6 col-lg-5">
                     <div className="login-wrap p-0">
-                      <img src={Logo2} className="d-flex m-auto pb-4" />
+                      <img
+                        src={Logo2}
+                        className="d-flex m-auto pb-4"
+                        alt="img"
+                      />
 
                       <h3 className="py-2 fs-5 text-center">
                         Already Have an account?
@@ -128,8 +131,8 @@ export default function Login() {
                           </div>
 
                           <div className="form-group">
-                            {email == " " ||
-                            password == " " ||
+                            {email === " " ||
+                            password === " " ||
                             email.length < 1 ? (
                               <div className="col extra3 testimony_name">
                                 <p className="pt-4">
@@ -138,14 +141,12 @@ export default function Login() {
                                 </p>
                               </div>
                             ) : (
-                              <a>
-                                <button
-                                  type="submit"
-                                  className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
-                                >
-                                  Login{" "}
-                                </button>
-                              </a>
+                              <button
+                                type="submit"
+                                className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
+                              >
+                                Login{" "}
+                              </button>
                             )}
                           </div>
                         </div>
@@ -156,10 +157,11 @@ export default function Login() {
                       {/* <GLogin/> */}
                       <br />
                       <p className="ta text-center">Don't have an account?</p>
-                      <Link to="/register" className="d-flex decoration-none">
-                        <a className="decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3">
-                          Register{" "}
-                        </a>
+                      <Link
+                        to="/register"
+                        className="d-flex decoration-none decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3"
+                      >
+                        Register{" "}
                       </Link>
                     </div>
                   </div>

@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
 import weed1 from "../assets/weed1.png";
-import { addcart, getallItems, getcart, getItem } from "../utils/APIroutes";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { addcart, getallItems } from "../utils/APIroutes";
+import { Navigate } from "react-router-dom";
 
-export default function Card2({ count, setCount }) {
+export default function Card2({ count, setCount, user_id }) {
   const [items, setItems] = useState([]);
-  const [cookies] = useCookies(["id"]);
   const [item_sub, setItem_sub] = useState(0);
-  const [countItem, setCountItem] = useState(1);
-  const navigate = useNavigate();
+  const [countItem] = useState(1);
 
   useEffect(() => {
     axios.get(getallItems).then((response) => {
@@ -20,11 +17,11 @@ export default function Card2({ count, setCount }) {
   }, [items]);
 
   const addtocart = (item_id, item_name, item_img, price) => {
-    if (cookies.id) {
+    if (user_id) {
       setCount(+count + 1);
       setItem_sub(+price * countItem);
       const itemData = {
-        user_id: cookies.id,
+        user_id: user_id,
         item_id: item_id,
         item_name: item_name,
         item_img: item_img,
@@ -35,7 +32,7 @@ export default function Card2({ count, setCount }) {
 
       axios.post(addcart, itemData).then((response) => {});
     } else {
-      navigate("/login");
+      <Navigate to="/login" replace />
     }
   };
 
@@ -56,7 +53,6 @@ export default function Card2({ count, setCount }) {
       </div>
       {items.map((item) => (
         <div className="col-6 col-md-3 col-sm-6 pb-4">
-          {/* <form onSubmit={(e)=>handleSubmit(e)}> */}
 
           <div className="py-4 weed2">
             <img src={item.item_img} alt={item.item_name} />
@@ -92,7 +88,6 @@ export default function Card2({ count, setCount }) {
             </button>
           </div>
 
-          {/* </form> */}
         </div>
       ))}
     </div>

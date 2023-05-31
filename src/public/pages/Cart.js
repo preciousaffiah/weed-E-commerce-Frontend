@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,17 +6,14 @@ import "../css/styles.css";
 import Footer from "../components/Footer";
 import { getcart } from "../utils/APIroutes";
 import Navbar from "../components/Navbar";
-import { Navigate, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Navigate } from "react-router-dom";
 
-export default function Cart({ count, setCount, cartCount, setMycartCount }) {
+export default function Cart({ count, setCount, cartCount, setMycartCount, user_id }) {
   const [items, setItems] = useState([0]);
-
   const [total, setTotal] = useState(0);
-  const [shipping, setShipping] = useState(20);
-  const [tax, setTax] = useState(5);
+  const shipping = useState(20);
+  const tax = useState(5);
   const [status, setStatus] = useState();
-  const [cookies] = useCookies(["id"]);
 
   const toastOptions = {
     position: "bottom-right",
@@ -27,11 +24,11 @@ export default function Cart({ count, setCount, cartCount, setMycartCount }) {
     className: "toast-message",
   };
 
-  if (!cookies.id) {
+  if (!user_id) {
     return <Navigate to="/login" replace />;
   } else {
     try {
-      axios.get(`${getcart}/${cookies.id}`).then((response) => {
+      axios.get(`${getcart}/${user_id}`).then((response) => {
         setStatus(response.data.status);
         if (response.data.status === "FAILED") {
           toast.error(response.data.message, toastOptions);
@@ -44,8 +41,7 @@ export default function Cart({ count, setCount, cartCount, setMycartCount }) {
         }
         setTotal(
           items.reduce(
-            (accumulator, product) => +accumulator + +product.sub_total,
-            0
+            (accumulator, product) => +accumulator + +product.sub_total,0
           )
         );
       });
@@ -71,7 +67,7 @@ export default function Cart({ count, setCount, cartCount, setMycartCount }) {
                 </tr>
                 {items.map((item) => (
                   <>
-                    <tr key="1" className="product-checkout">
+                    <tr key={item.item_id} className="product-checkout">
                       <td>
                         <img
                           src={item.item_img}
@@ -134,6 +130,7 @@ export default function Cart({ count, setCount, cartCount, setMycartCount }) {
             setMycartCount={setMycartCount}
             count={count}
             setCount={setCount}
+            user_id={user_id}
           />
         </section>
 

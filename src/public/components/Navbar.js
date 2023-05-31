@@ -3,37 +3,33 @@ import logo2 from "../assets/Logo2.png";
 import { BsHandbag } from "react-icons/bs";
 import axios from "axios";
 import { getcart } from "../utils/APIroutes";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
 
-export default function Navbar({ count }) {
-  const [cookies] = useCookies(["id"]);
+export default function Navbar({ count, user_id }) {
   const [cartCount, setMycartCount] = useState([]);
 
-  const navigate = useNavigate();
-
   useEffect(() => {
-    if (cookies.id) {
-      axios.get(`${getcart}/${cookies.id}`).then((response) => {
+    if (user_id) {
+      axios.get(`${getcart}/${user_id}`).then((response) => {
         if (response.data.status === "SUCCESS") {
           setMycartCount(response.data.message.length);
         }
       });
     }
-  }, [count, cookies.id]);
+  }, [count, user_id]);
 
   const logout = () => {
-    navigate("/");
+    localStorage.removeItem("loggedInUser");
+    window.location.reload();
   };
 
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary px-md-5 px-4 py-md-2 py-3">
-        <div class="container-fluid col d-flex align-items-center justify-content-between mygap2 gap-sm-0 px-md-5 px-0">
+      <nav className="navbar navbar-expand-lg bg-body-tertiary px-md-5 px-4 py-md-2 py-3">
+        <div className="container-fluid col d-flex align-items-center justify-content-between mygap2 gap-sm-0 px-md-5 px-0">
           <img className="px-0 px-md-5 px-sm-0" src={logo2} alt="logo" />
 
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -41,10 +37,10 @@ export default function Navbar({ count }) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-between"
+            className="collapse navbar-collapse justify-content-between"
             id="navbarNav"
           >
             <ul className="d-md-flex d-block d-sm-block text-start p-0 pt-2 fw-medium m-0 justify-content-between mygap mf">
@@ -66,7 +62,7 @@ export default function Navbar({ count }) {
               </li>
             </ul>
             <div className="d-flex d-md-flex d-sm-block text-sm-start align-items-center gap-3 mf">
-              {cookies.id ? (
+              {user_id ? (
                 <p
                   className="d-flex text-start py-1 fw-medium text-sm-start m-0 fw-normal text-dark link-offset-2 link-underline link-underline-opacity-0 pointer"
                   onClick={logout}
@@ -82,7 +78,7 @@ export default function Navbar({ count }) {
                 </a>
               )}
               <a
-                href={`/cart`}
+                href="/cart"
                 className="text-dark link-offset-2 link-underline link-underline-opacity-0"
               >
                 <div className="d-flex py-1 fw-medium ">
