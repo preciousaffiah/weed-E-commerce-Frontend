@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Logo2 from "../assets/Logo2.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,11 +9,11 @@ import { login } from "../utils/APIroutes";
 import { BiHide } from "react-icons/bi";
 import { BiShow } from "react-icons/bi";
 
-export default function Login({ user_id, setUser_id }) {
+export default function Login({ user_id }) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
-  const navigate = useNavigate();
+  
 
   const toastOptions = {
     position: "bottom-right",
@@ -44,8 +44,8 @@ export default function Login({ user_id, setUser_id }) {
             JSON.stringify(response.data.user.user_id)
           );
           user_id = JSON.parse(localStorage.getItem("loggedInUser"));
-          window.location.reload();
-          navigate("/");
+          window.location.assign('/')
+          
         }
       });
     } catch (err) {

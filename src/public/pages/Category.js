@@ -11,12 +11,12 @@ import Card from "../components/Card";
 import Navbar from "../components/Navbar";
 
 export default function Category({
+  cartCount, 
+  setMycartCount,
   setUser_id,
   user_id,
   count,
-  setCount,
-  cartCount,
-  setMycartCount,
+  setCount
 }) {
   return (
     <div className="container-fluid p-0 text-center">
@@ -84,7 +84,7 @@ export default function Category({
               Top selling
             </h4>
 
-            <Card count={count} setCount={setCount} />
+            <Card cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
           </div>
         </div>
       </section>
@@ -101,12 +101,12 @@ export default function Category({
         <div className="container-fluid p-md-5 px-3 py-5 dispensary">
           <div className="row row3 pb-4">
             <div className="col-12">
-              <Card2 count={count} setCount={setCount} />
+              <Card2 cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
           <div className="row row3 ">
             <div className="col-12">
-              <Card2 count={count} setCount={setCount} />
+              <Card2 cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
         </div>

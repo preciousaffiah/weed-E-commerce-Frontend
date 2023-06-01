@@ -3,12 +3,13 @@ import axios from "axios";
 import "../css/styles.css";
 import weed1 from "../assets/weed1.png";
 import { addcart, getallItems } from "../utils/APIroutes";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Card2({ count, setCount, user_id }) {
+export default function Card({ count, setCount, user_id, cartCount, setMycartCount}) {
   const [items, setItems] = useState([]);
   const [item_sub, setItem_sub] = useState(0);
   const [countItem] = useState(1);
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get(getallItems).then((response) => {
@@ -16,9 +17,12 @@ export default function Card2({ count, setCount, user_id }) {
     });
   }, [items]);
 
+
   const addtocart = (item_id, item_name, item_img, price) => {
     if (user_id) {
-      setCount(+count + 1);
+      
+      setMycartCount(cartCount += 1)
+
       setItem_sub(+price * countItem);
       const itemData = {
         user_id: user_id,
@@ -31,11 +35,13 @@ export default function Card2({ count, setCount, user_id }) {
       };
 
       axios.post(addcart, itemData).then((response) => {});
-    } else {
-      <Navigate to="/login" replace />
+    } 
+    else {
+      navigate('/login')
+      
     }
   };
-
+ 
   return (
     <div className="row">
       <div className="col-6 col-md-3 col-sm-6 pb-4">

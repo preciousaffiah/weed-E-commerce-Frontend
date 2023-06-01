@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import logo2 from "../assets/Logo2.png";
 import { BsHandbag } from "react-icons/bs";
-import axios from "axios";
-import { getcart } from "../utils/APIroutes";
 
-export default function Navbar({ count, user_id }) {
-  const [cartCount, setMycartCount] = useState([]);
 
-  useEffect(() => {
-    if (user_id) {
-      axios.get(`${getcart}/${user_id}`).then((response) => {
-        if (response.data.status === "SUCCESS") {
-          setMycartCount(response.data.message.length);
-        }
-      });
-    }
-  }, [count, user_id]);
+export default function Navbar({ user_id, cartCount }) {
+  
+
+ 
 
   const logout = () => {
     localStorage.removeItem("loggedInUser");
@@ -52,9 +43,9 @@ export default function Navbar({ count, user_id }) {
                   Home
                 </a>
               </li>
-              <li className="list-group-item py-1 fw-medium">
+              <li className="list-group-item py-1 fw-bold">
                 <a
-                  className=" text-dark link-offset-2 link-underline link-underline-opacity-0"
+                  className="fw-bold text-dark link-offset-2 link-underline link-underline-opacity-0"
                   href="/shop"
                 >
                   Shop
@@ -84,7 +75,7 @@ export default function Navbar({ count, user_id }) {
                 <div className="d-flex py-1 fw-medium ">
                   <BsHandbag className="fs-4" />
                   <p className="px-1 bg-danger text-white rounded-5 mysz">
-                    {+cartCount + count}
+                    {cartCount}
                   </p>
                 </div>
               </a>

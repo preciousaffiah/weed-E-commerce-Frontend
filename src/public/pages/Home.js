@@ -16,11 +16,14 @@ import Card2 from "../components/Card2";
 import { GiChestnutLeaf } from "react-icons/gi";
 import Navbar from "../components/Navbar";
 
-export default function Home({ count, setCount, cartCount, setUser_id, user_id }) {
+
+export default function Home({ cartCount, setMycartCount, count, setCount, setUser_id, user_id }) {
+
+
   return (
     <div className="container-fluid p-0 text-center">
       <section>
-        <Navbar cartCount={cartCount} count={count} setCount={setCount} setUser_id={setUser_id} user_id={user_id}/>
+        <Navbar cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} setUser_id={setUser_id} user_id={user_id}/>
       </section>
       <div className="background_img d-flex">
         <div className="container-fluid background_txt d-flex text-start m-0 p-md-5 px-2 align-items-center">
@@ -94,7 +97,7 @@ export default function Home({ count, setCount, cartCount, setUser_id, user_id }
           </div>
           <div className="row row3">
             <div className="col-12">
-              <Card count={count} setCount={setCount} cartCount={cartCount} />
+              <Card cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
         </div>
@@ -122,7 +125,7 @@ export default function Home({ count, setCount, cartCount, setUser_id, user_id }
 
           <div className="row row3 pb-4">
             <div className="col-12">
-              <Card2 count={count} setCount={setCount} cartCount={cartCount} />
+              <Card2 cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
         </div>

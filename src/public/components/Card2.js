@@ -1,16 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Cookies } from "react-cookie";
 import "../css/styles.css";
 import { addcart, getallItems } from "../utils/APIroutes";
-import { useCookies } from "react-cookie";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function Card2({ count, setCount, user_id }) {
+
+export default function Card2({ count, setCount, user_id, cartCount, setMycartCount}) {
   const [items, setItems] = useState([]);
-  const [cookies] = useCookies(["id"]);
   const [item_sub, setItem_sub] = useState(0);
-  const [countItem, setCountItem] = useState(1);
+  const [countItem] = useState(1);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +19,7 @@ export default function Card2({ count, setCount, user_id }) {
 
   const addtocart = (item_id, item_name, item_img, price) => {
     if (user_id) {
-      setCount(+count + 1);
+      setMycartCount(cartCount += 1)
       setItem_sub(+price * countItem);
       const itemData = {
         user_id: user_id,
@@ -35,7 +33,7 @@ export default function Card2({ count, setCount, user_id }) {
 
       axios.post(addcart, itemData).then((response) => {});
     } else {
-      <Navigate to="/" replace />
+      navigate('/login')
     }
   };
 

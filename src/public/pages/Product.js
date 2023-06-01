@@ -10,15 +10,15 @@ import Footer from "../components/Footer";
 import Card2 from "../components/Card2";
 import { addcart, getItem } from "../utils/APIroutes";
 import Navbar from "../components/Navbar";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Product({
+  cartCount, 
+  setMycartCount,
   setUser_id,
   user_id,
   count,
-  setCount,
-  cartCount,
-  setMycartCount,
+  setCount
 }) {
   const [item, setItem] = useState();
   const [item_name, setItem_name] = useState();
@@ -31,6 +31,7 @@ export default function Product({
   const [item_may_relieve, setItem_may_relieve] = useState();
   const [item_sub, setItem_sub] = useState(0);
   const [countItem, setCountItem] = useState(1);
+  const navigate = useNavigate();
   const product_id = window.location.pathname.split("/").pop();
 
   useEffect(() => {
@@ -46,13 +47,13 @@ export default function Product({
       setItem_id(item.item_id);
       setItem_sub(+item_price * countItem);
     });
-  }, [item]);
+  }, [item, countItem, item_price, product_id]);
 
 
 
   const addtocart = () => {
    if (user_id) {
-    setCount(+count + 1)
+    setMycartCount(cartCount += 1)
     const itemData = {
       user_id: user_id,
       item_id: item_id,
@@ -67,7 +68,7 @@ export default function Product({
       setItem(response.data.result[0]);
     });
   } else{
-    <Navigate to="/login" replace />
+    navigate('/login')
   }
   };
 
@@ -237,7 +238,7 @@ export default function Product({
 
       <div className="py-3 px-md-5 px-3">
         <h2 className="text-start pb-5">Featured Products</h2>
-        <Card2 count={count} setCount={setCount} />
+        <Card2 cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />
       </div>
       <div className="position-relative pb-5">
         <img src={refer} alt="img" className="refer" />
