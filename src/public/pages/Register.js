@@ -41,10 +41,10 @@ export default function Register({ user_id, setUser_id }) {
     try {
       axios.post(register, userData).then((response) => {
         if (response.data.status === "FAILED") {
-          toast.error(response.data.message, toastOptions);
+          toast.error(response.data.msg, toastOptions);
         } else {
-          toast.success(response.data.message, toastOptions);
-          setUser_id(response.data.insertResult.insertId);
+          toast.success(response.data.msg, toastOptions);
+          setUser_id(response.data.user._id);
           localStorage.setItem('loggedInUser', JSON.stringify(user_id));
         }
       });

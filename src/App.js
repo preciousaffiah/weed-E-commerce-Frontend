@@ -20,7 +20,7 @@ function App() {
     if (user_id) {
       axios.get(`${getcart}/${user_id}`).then((response) => {
         if (response.data.status === "SUCCESS") {
-          setMycartCount(response.data.message.length);
+          setMycartCount(response.data.cart.length);
         }
       });
     }

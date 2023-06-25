@@ -406,6 +406,10 @@ width: 5rem;
     margin-left: -1.5rem;
 }
 
+.cart{
+    width: 30rem;
+}
+
 @media only screen and (max-width: 770px) {
     .background_txt {
         padding: 2rem!important;
@@ -468,6 +472,9 @@ width: 5rem;
     .mf{
         font-size: 1.05rem;
             display: block!important;
+    }
+    .cart{
+        width: 23rem;
     }
  
   }

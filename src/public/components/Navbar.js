@@ -10,7 +10,7 @@ export default function Navbar({ user_id, cartCount }) {
 
   const logout = () => {
     localStorage.removeItem("loggedInUser");
-    window.location.reload();
+    window.location.assign('/')
   };
 
   return (
