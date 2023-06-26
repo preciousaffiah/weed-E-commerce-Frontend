@@ -18,7 +18,7 @@ export default function Mail() {
                 <div className="justify-content-center">
                   <div className="px-md-5 px-3 col-md-10 col m-auto">
                     <div className="login-wrap p-0">
-                      <img src={Logo2} className="d-flex m-auto pb-4"/>
+                      <img src={Logo2} alt="img" className="d-flex m-auto pb-4"/>
                       
                       <h4 className="py-2 fs-3 fst-italic text-center d-flex justify-content-center align-items-center">
                       Welcome Pal! 

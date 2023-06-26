@@ -142,7 +142,7 @@ export default function Home({ cartCount, setMycartCount, count, setCount, setUs
       </section>
       <section className="steps d-fluid px-md-5 px-sm-3 px-2 py-5">
         <div className="order px-md-5">
-          <h4 className="w-auto fs-1 px-md-5">
+          <h4 className="w-auto fs-1 px-md-5 f">
             HOW TO ORDER WEED ONLINE FROM TOP SHELF BC - MAIL ORDER MARIJUANA
           </h4>
           <p className="pt-3 w-auto px-md-5">

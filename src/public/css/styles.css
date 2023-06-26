@@ -410,6 +410,13 @@ width: 5rem;
     width: 30rem;
 }
 
+.spinner{
+    width: fit-content;
+    height: 30rem
+}
+
+
+
 @media only screen and (max-width: 770px) {
     .background_txt {
         padding: 2rem!important;
@@ -497,9 +504,8 @@ width: 5rem;
         padding: 0.7rem 2rem;
         font-size: 1rem;
     }
-    .background_txt_child{
-        position: relative;
-        top: -5rem;
+    .f{
+        font-size: 1.4rem!important;
     }
     .weed2_txt h4, .weed1_txt h4{
         font-size: 0.9rem;
@@ -526,7 +532,7 @@ width: 5rem;
     
    
     .choose{
-        font-size: 1.89rem!important;
+        font-size: 1.6rem!important;
     }
     .shop_shipping h1, .shop_security h1, .shop_pricing h1 {
         font-size: 0.87rem;

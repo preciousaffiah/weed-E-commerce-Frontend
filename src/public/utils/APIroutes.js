@@ -1,4 +1,4 @@
-export const host = "http://localhost:3001";
+export const host = "https://e-commerce-8pag.onrender.com";
 export const getallItems = `${host}/items`;
 export const getItem = `${host}/items/`;
 export const getcart = `${host}/users/mycart`;

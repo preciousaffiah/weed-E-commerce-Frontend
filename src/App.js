@@ -7,7 +7,7 @@ import Product from "./public/pages/Product";
 import Cart from "./public/pages/Cart";
 import Register from "./public/pages/Register";
 import Login from "./public/pages/Login";
-import Mail from "./public/pages/mail";
+// import Mail from "./public/pages/mail";
 import { getcart } from "./public/utils/APIroutes";
 import axios from "axios";
 
@@ -35,7 +35,7 @@ function App() {
             element={<Home cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
           />
           <Route path="/register" element={<Register user_id={user_id} />} />
-          <Route path="/mail" element={<Mail />} />
+          {/* <Route path="/mail" element={<Mail />} /> */}
           <Route path="/login" element={<Login user_id={user_id} />} />
           <Route
             path="/shop"

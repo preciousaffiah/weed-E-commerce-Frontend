@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,19 +8,30 @@ import Footer from "../components/Footer";
 import { getcart } from "../utils/APIroutes";
 import Navbar from "../components/Navbar";
 import { Navigate } from "react-router-dom";
+import {TbCurrencyNaira} from "react-icons/tb";
+
 
 export default function Cart({
   count,
   setCount,
   cartCount,
   setMycartCount,
-  user_id,
+  user_id
 }) {
   const [items, setItems] = useState([0]);
   const [sub_total, setSub_Total] = useState(0);
   const [total, setTotal] = useState(0);
-  const shipping = 20;
-  const tax = 5;
+  const shipping = 1000;
+  const tax = 400;
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowLoader(false);
+    }, 3000); // Set the duration in milliseconds (3 seconds in this case)
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const toastOptions = {
     position: "bottom-right",
@@ -31,6 +42,29 @@ export default function Cart({
     className: "toast-message",
   };
 
+  const handleCheckout=()=>{
+  try {
+    axios.post(
+      'https://api.paystack.co/transaction/initialize',
+      {
+        amount: total * 100, // Amount in kobo
+        email: 'test@email.com',
+      },
+      {
+        headers: {
+          Authorization: 'Bearer sk_test_2bc36dbbc2776b0152cd1f2a1d610fad09517a97',
+          'Content-Type': 'application/json',
+        },
+      }
+    ).then((response) => {
+      window.location.href= response.data.data.authorization_url;
+
+    })
+  } catch (error) {
+    console.error(error.response.data);
+  }
+
+  }
   if (!user_id) {
     return <Navigate to="/login" replace />;
   } else {
@@ -66,8 +100,15 @@ export default function Cart({
             user_id={user_id}
           />
         </section>
+        {showLoader && (
+            <div className="w-100 spinner bg-light d-flex">
+              <div className="text-center m-auto">
+                <div className="spinner-border" role="status"></div>
+              </div>
+            </div>
+          )}
 
-        {items.length > 0 ? (
+        {!showLoader && items.length > 0 ? (
           <section>
             <div className="col-12 pt-5 px-4">
               <table className="table" id="table">
@@ -91,7 +132,7 @@ export default function Cart({
                           </a>
                         </td>
                         <td>
-                          <p className="unit-price">${item.price}</p>
+                          <p className="unit-price"><TbCurrencyNaira/>{item.price}</p>
                         </td>
                         <td>
                           <div id="itemQuantity">
@@ -99,7 +140,7 @@ export default function Cart({
                           </div>
                         </td>
 
-                        <td id="itemSubtotal">${item.sub_total}</td>
+                        <td id="itemSubtotal"><TbCurrencyNaira/>{item.sub_total}</td>
                       </tr>
                   ))}
 
@@ -115,10 +156,10 @@ export default function Cart({
                       <p className="fw-bold" id="totalTotal"></p>
                     </td>
                     <td className="border-0" id="total-values">
-                      <p id="subtotalValue">${shipping}</p>
-                      <p id="shippingValue">${tax}</p>
-                      <p className="total-value fw-bold">
-                        ${total.toLocaleString()}
+                      <p id="subtotalValue" className="d-flex align-items-center"><TbCurrencyNaira/>{shipping}</p>
+                      <p id="shippingValue" className="d-flex align-items-center"><TbCurrencyNaira/>{tax}</p>
+                      <p className="total-value fw-bold d-flex align-items-center">
+                      <TbCurrencyNaira/>{total.toLocaleString()}
                         <span id="totalValue"></span>
                       </p>
                     </td>
@@ -126,21 +167,23 @@ export default function Cart({
                 </tbody>
               </table>
               <div className="weed2_txt pb-4">
-                <button className="py-2 px-5 fs-6">Checkout</button>
+                <button className="py-2 px-5 fs-6" onClick={handleCheckout}>Checkout</button>
               </div>
             </div>
           </section>
-        ) : (
+        ) : !showLoader &&(
           <div className="py-5">
             <h2 className="fw-bold fst-italic pb-4">Nothing's here :(</h2>
             <img src={emptyCart} alt="empty cart" className="cart" />
           </div>
         )}
 
+
         <section className=" steps2 px-3 pt-5">
           <Footer />
         </section>
       </div>
+      
       <ToastContainer />
     </div>
   );

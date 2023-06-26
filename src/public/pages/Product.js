@@ -3,6 +3,7 @@ import axios from "axios";
 import "../css/styles.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {TbCurrencyNaira} from "react-icons/tb";
 import effects from "../assets/effects.png";
 import relieve from "../assets/relieve.png";
 import aroma from "../assets/aroma.png";
@@ -114,7 +115,7 @@ export default function Product({
 
                   <div className="d-flex justify-content-evenly align-items-center w-6 pb-3 pt-2">
                     <h5 className="m-0 fs-5 text-danger fw-medium">
-                      ${item_price}
+                      <TbCurrencyNaira/>{item_price}
                     </h5>
                   </div>
                 </div>
@@ -155,7 +156,7 @@ export default function Product({
                   <div className="border py-4 px-md-3 px-2 rounded">
                     <div className="d-flex justify-content-between">
                       <p className=" shipping">Khalifa Kush (AAAA)</p>
-                      <p className="fw-medium">${item_price}</p>
+                      <p className="fw-medium"><TbCurrencyNaira/>{item_price}</p>
                     </div>
                     <div className="weed2_txt d-flex justify-content-between p-3">
                       <div className="d-flex gap-2">
@@ -187,7 +188,7 @@ export default function Product({
                         </div>
                       </div>
                       <button className="py-2" onClick={() => addtocart()}>
-                        Add to Cart | ${item_sub}
+                        Add to Cart | <TbCurrencyNaira/>{item_sub}
                       </button>
                     </div>
                     <div className="shipping">
@@ -195,7 +196,7 @@ export default function Product({
                         <img src={tick} alt="img" />
                         <p className="m-0">
                           Free Xpress Shipping on orders over{" "}
-                          <span className="text-warning">$149</span>
+                          <span className="text-warning"><TbCurrencyNaira/>25,500</span>
                         </p>
                       </div>
                       <div className="d-flex align-items-center pb-1 gap-1">

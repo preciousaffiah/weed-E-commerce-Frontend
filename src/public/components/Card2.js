@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addcart, getallItems } from "../utils/APIroutes";
 import { useNavigate } from "react-router-dom";
+import {TbCurrencyNaira} from "react-icons/tb";
 
 export default function Card2({
   count,
@@ -77,7 +78,7 @@ export default function Card2({
                 <p className=" py-1 px-2">{item.strand}</p>
               </div>
               <div className="d-flex m-auto justify-content-evenly align-items-center w-6 pb-3 pt-2">
-                <h5 className="m-0">${item.price}</h5>
+                <h5 className="m-0"><TbCurrencyNaira/>{item.price}</h5>
 
                 <p className="">/</p>
                 <div className="">gram</div>
