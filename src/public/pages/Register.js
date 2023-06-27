@@ -44,8 +44,11 @@ export default function Register({ user_id, setUser_id }) {
           toast.error(response.data.msg, toastOptions);
         } else {
           toast.success(response.data.msg, toastOptions);
-          setUser_id(response.data.user._id);
-          localStorage.setItem('loggedInUser', JSON.stringify(user_id));
+          localStorage.setItem(
+            "loggedInUser",
+            JSON.stringify(response.data.user._id)
+          );
+          user_id = JSON.parse(localStorage.getItem("loggedInUser"));
           window.location.assign('/')
         }
       });
