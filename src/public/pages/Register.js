@@ -46,6 +46,7 @@ export default function Register({ user_id, setUser_id }) {
           toast.success(response.data.msg, toastOptions);
           setUser_id(response.data.user._id);
           localStorage.setItem('loggedInUser', JSON.stringify(user_id));
+          window.location.assign('/')
         }
       });
     } catch (err) {
