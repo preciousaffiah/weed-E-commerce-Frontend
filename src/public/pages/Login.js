@@ -35,12 +35,12 @@ export default function Login({ user_id }) {
     try {
       axios.post(login, userData).then((response) => {
         if (response.data.status === "FAILED") {
-          toast.error(response.data.msg, toastOptions);
+          toast.error(response.data.data.msg, toastOptions);
         } else {
-          toast.success(response.data.msg, toastOptions);
+          toast.success(response.data.data.msg, toastOptions);
           localStorage.setItem(
             "loggedInUser",
-            JSON.stringify(response.data.user._id)
+            JSON.stringify(response.data.data.user._id)
           );
           user_id = JSON.parse(localStorage.getItem("loggedInUser"));
           window.location.assign('/')
