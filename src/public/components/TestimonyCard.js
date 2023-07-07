@@ -115,9 +115,9 @@ export default function TestimonyCard() {
           </div>
         </div>
       </div>
-      <div id="carouselExampleControls" class="carousel slide d-block d-md-none" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
+      <div id="carouselExampleControls" className="carousel slide d-block d-md-none" data-bs-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
           <div className="col-12 col-md-3 col-sm-12 pb-4">
               <div className="py-5 weed3">
                 <div className="testimony_txt text-start px-4">
@@ -148,7 +148,7 @@ export default function TestimonyCard() {
               </div>
             </div>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
           <div className="col-12 col-md-3 col-sm-12 pb-4">
               <div className="py-5 weed3">
                 <div className="testimony_txt text-start px-4">
@@ -179,7 +179,7 @@ export default function TestimonyCard() {
               </div>
             </div>
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
           <div className="col-12 col-md-3 col-sm-12 pb-4">
               <div className="py-5 weed3">
                 <div className="testimony_txt text-start px-4">
@@ -211,13 +211,13 @@ export default function TestimonyCard() {
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev ml1" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bg-success rounded-circle" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+        <button className="carousel-control-prev ml1" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon bg-success rounded-circle" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next ml1" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon bg-success rounded-circle" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+        <button className="carousel-control-next ml1" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span className="carousel-control-next-icon bg-success rounded-circle" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
         </button>
       </div>
     </div>

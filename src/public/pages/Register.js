@@ -65,9 +65,9 @@ export default function Register({ user_id, setUser_id }) {
 
   return (
     <div className="img register-bg py-md-5 py-0 js-fullheight bimage">
-      <div class="container px-0">
-        <div class="align-items-center bg-light min-vh-100 py-4 rounded-3">
-          <div class="col-md-12">
+      <div className="container px-0">
+        <div className="align-items-center bg-light min-vh-100 py-4 rounded-3">
+          <div className="col-md-12">
             <section className="ftco-section">
               <div className="container">
                 <div className="row justify-content-center">
