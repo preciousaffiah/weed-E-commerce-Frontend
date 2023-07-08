@@ -41,14 +41,15 @@ export default function Register({ user_id, setUser_id }) {
     try {
       axios.post(register, userData).then((response) => {
         if (response.data.status === "FAILED") {
-          toast.error(response.data.data.msg, toastOptions);
+          toast.error(response.data.msg, toastOptions);
         } else {
-          toast.success(response.data.data.msg, toastOptions);
+          toast.success(response.data.msg, toastOptions);
           localStorage.setItem(
             "loggedInUser",
-            JSON.stringify(response.data.data.user._id)
+            JSON.stringify(response.data.user._id)
           );
           user_id = JSON.parse(localStorage.getItem("loggedInUser"));
+          console.log(response.data)
           window.location.assign('/')
         }
       });
