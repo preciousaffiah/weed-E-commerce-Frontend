@@ -246,10 +246,10 @@ export default function Register({ user_id, setUser_id }) {
                               >
                                 {loading ? (
                                   <div
-                                    class="spinner-border text-light"
+                                    className="spinner-border text-light"
                                     role="status"
                                   >
-                                    <span class="sr-only"></span>
+                                    <span className="sr-only"></span>
                                   </div>
                                 ) : (
                                   <p className="login m-0">Register</p>

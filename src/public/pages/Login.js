@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
 import { Link, Navigate } from "react-router-dom";
@@ -166,10 +166,10 @@ export default function Login({ user_id }) {
                               >
                                 {loading ? (
                                   <div
-                                    class="spinner-border text-light"
+                                    className="spinner-border text-light"
                                     role="status"
                                   >
-                                    <span class="sr-only"></span>
+                                    <span className="sr-only"></span>
                                   </div>
                                 ) : (
                                   <p className="login m-0">Login</p>
