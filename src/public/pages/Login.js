@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../css/styles.css";
 import { Link, Navigate } from "react-router-dom";
@@ -13,7 +13,17 @@ export default function Login({ user_id }) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+
+    // Simulating an asynchronous task
+    setTimeout(() => {
+      // Task completed, set isLoading to false
+      setLoading(false);
+    }, 3000);
+  };
 
   const toastOptions = {
     position: "bottom-right",
@@ -28,30 +38,36 @@ export default function Login({ user_id }) {
   }
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = {
-      email: email,
-      password: password,
-    };
-    try {
-      axios.post(login, userData).then((response) => {
-        if (response.data.status === "FAILED") {
-          toast.error(response.data.msg, toastOptions);
-        } else {
-          toast.success(response.data.msg, toastOptions);
-          localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(response.data.data.user._id)
-          );
-          user_id = JSON.parse(localStorage.getItem("loggedInUser"));
-          window.location.assign('/')
-          
-        }
-      });
-    } catch (err) {
-      console.error();
+    if (
+      email === false ||
+      password === false
+    ) {
+      toast.error("Fields must not be left empty", toastOptions);
+    } else {
+      e.preventDefault();
+      const userData = {
+        email: email,
+        password: password,
+      };
+      try {
+        axios.post(login, userData).then((response) => {
+          if (response.data.status === "FAILED") {
+            toast.error(response.data.msg, toastOptions);
+          } else {
+            toast.success(response.data.msg, toastOptions);
+            localStorage.setItem(
+              "loggedInUser",
+              JSON.stringify(response.data.data.user._id)
+            );
+            user_id = JSON.parse(localStorage.getItem("loggedInUser"));
+            window.location.assign("/");
+          }
+        });
+      } catch (err) {
+        console.error();
+      }
     }
   };
-
   const togglePassword = () => {
     // When the handler is invoked
     // inverse the boolean state of passwordShown
@@ -142,9 +158,22 @@ export default function Login({ user_id }) {
                             ) : (
                               <button
                                 type="submit"
+                                onClick={(e) => {
+                                  setLoading(true);
+                                  handleClick();
+                                }}
                                 className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
                               >
-                                Login{" "}
+                                {loading ? (
+                                  <div
+                                    class="spinner-border text-light"
+                                    role="status"
+                                  >
+                                    <span class="sr-only"></span>
+                                  </div>
+                                ) : (
+                                  <p className="login m-0">Login</p>
+                                )}
                               </button>
                             )}
                           </div>

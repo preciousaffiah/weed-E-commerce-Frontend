@@ -15,6 +15,17 @@ export default function Register({ user_id, setUser_id }) {
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleClick = () => {
+    setLoading(true);
+
+    // Simulating an asynchronous task
+    setTimeout(() => {
+      // Task completed, set isLoading to false
+      setLoading(false);
+    }, 3000);
+  };
 
   const toastOptions = {
     position: "bottom-right",
@@ -31,30 +42,41 @@ export default function Register({ user_id, setUser_id }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = {
-      email: email,
-      first_name: first_name,
-      last_name: last_name,
-      password: password,
-    };
+    if (
+      first_name === false ||
+      last_name === false ||
+      email === false ||
+      password === false ||
+      confirmPassword === false
+    ) {
 
-    try {
-      axios.post(register, userData).then((response) => {
-        if (response.data.status === "FAILED") {
-          toast.error(response.data.msg, toastOptions);
-        } else {
-          toast.success(response.data.msg, toastOptions);
-          localStorage.setItem(
-            "loggedInUser",
-            JSON.stringify(response.data.user._id)
-          );
-          user_id = JSON.parse(localStorage.getItem("loggedInUser"));
-          console.log(response.data)
-          window.location.assign('/')
-        }
-      });
-    } catch (err) {
-      console.error();
+      toast.error("Fields must not be left empty", toastOptions);
+    } else {
+      const userData = {
+        email: email,
+        first_name: first_name,
+        last_name: last_name,
+        password: password,
+      };
+
+      try {
+        axios.post(register, userData).then((response) => {
+          if (response.data.status === "FAILED") {
+            toast.error(response.data.msg, toastOptions);
+          } else {
+            toast.success(response.data.msg, toastOptions);
+            localStorage.setItem(
+              "loggedInUser",
+              JSON.stringify(response.data.user._id)
+            );
+            user_id = JSON.parse(localStorage.getItem("loggedInUser"));
+            console.log(response.data);
+            window.location.assign("/");
+          }
+        });
+      } catch (err) {
+        console.error();
+      }
     }
   };
 
@@ -74,7 +96,11 @@ export default function Register({ user_id, setUser_id }) {
                 <div className="row justify-content-center">
                   <div className="col-md-6 col-lg-5">
                     <div className="login-wrap p-0">
-                      <img src={Logo2} alt='img' className="d-flex m-auto pb-4" />
+                      <img
+                        src={Logo2}
+                        alt="img"
+                        className="d-flex m-auto pb-4"
+                      />
 
                       <h3 className="py-2 fs-5 text-center">
                         Don't Have an account?
@@ -210,12 +236,25 @@ export default function Register({ user_id, setUser_id }) {
                                 </p>
                               </div>
                             ) : (
-                                <button
-                                  type="submit"
-                                  className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
-                                >
-                                  Register{" "}
-                                </button>
+                              <button
+                                type="submit"
+                                onClick={(e) => {
+                                  setLoading(true);
+                                  handleClick();
+                                }}
+                                className="mt-4 form-control register-bg text-light fw-medium border-light submit px-3"
+                              >
+                                {loading ? (
+                                  <div
+                                    class="spinner-border text-light"
+                                    role="status"
+                                  >
+                                    <span class="sr-only"></span>
+                                  </div>
+                                ) : (
+                                  <p className="login m-0">Register</p>
+                                )}
+                              </button>
                             )}
                           </div>
                         </div>
@@ -226,8 +265,11 @@ export default function Register({ user_id, setUser_id }) {
                       {/* <GLogin/> */}
                       <br />
                       <p className="ta text-center">Already have an account?</p>
-                      <Link to="/login" className="d-flex decoration-none decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3">
-                          Login{" "}
+                      <Link
+                        to="/login"
+                        className="d-flex decoration-none decoration-none form-control fit d-flex m-auto register-bg text-light fw-medium border-light submit px-3"
+                      >
+                        Login{" "}
                       </Link>
                     </div>
                   </div>
