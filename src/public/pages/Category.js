@@ -16,8 +16,10 @@ export default function Category({
   setUser_id,
   user_id,
   count,
-  setCount
+  setCount,
+  token
 }) {
+ 
   return (
     <div className="container-fluid p-0 text-center">
       <section>
@@ -84,7 +86,7 @@ export default function Category({
               Top selling
             </h4>
 
-            <Card cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
+            <Card token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
           </div>
         </div>
       </section>

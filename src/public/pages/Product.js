@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/styles.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {TbCurrencyNaira} from "react-icons/tb";
+import { TbCurrencyNaira } from "react-icons/tb";
 import effects from "../assets/effects.png";
 import relieve from "../assets/relieve.png";
 import aroma from "../assets/aroma.png";
@@ -22,6 +22,7 @@ export default function Product({
   user_id,
   count,
   setCount,
+  token
 }) {
   const [item, setItem] = useState();
   const [item_name, setItem_name] = useState();
@@ -40,14 +41,14 @@ export default function Product({
   useEffect(() => {
     axios.get(`${getItem}/${product_id}`).then((response) => {
       setItem(response.data.item);
-      setItem_name(item.item_name);
-      setItem_strand(item.strand);
-      setItem_img(item.item_img);
-      setItem_price(item.price);
-      setItem_aroma(item.aromas);
-      setItem_effect(item.effects);
-      setItem_may_relieve(item.may_relieve);
-      setItem_id(item._id);
+      setItem_name(response.data.item.item_name);
+      setItem_strand(response.data.item.strand);
+      setItem_img(response.data.item.item_img);
+      setItem_price(response.data.item.price);
+      setItem_aroma(response.data.item.aromas);
+      setItem_effect(response.data.item.effects);
+      setItem_may_relieve(response.data.item.may_relieve);
+      setItem_id(response.data.item._id);
       setItem_sub(+item_price * countItem);
     });
   }, [item, countItem, item_price, product_id]);
@@ -73,15 +74,20 @@ export default function Product({
         sub_total: item_sub,
       };
 
-      axios.post(addcart, itemData).then((response) => {
-        toast.success("Item added successfully", toastOptions);
-        setItem(response.data.result[0]);
-        if (response.data.status === "UPDATED") {
-          setMycartCount((cartCount += 0));
-        } else {
-          setMycartCount((cartCount += 1));
-        }
-      });
+      axios
+        .post(addcart, itemData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          toast.success("Item added successfully", toastOptions);
+          if (response.data.status === "UPDATED") {
+            setMycartCount((cartCount += 0));
+          } else {
+            setMycartCount((cartCount += 1));
+          }
+        });
     } else {
       navigate("/login");
     }
@@ -115,7 +121,8 @@ export default function Product({
 
                   <div className="d-flex justify-content-evenly align-items-center w-6 pb-3 pt-2">
                     <h5 className="m-0 fs-5 text-danger fw-medium">
-                      <TbCurrencyNaira/>{item_price}
+                      <TbCurrencyNaira />
+                      {item_price}
                     </h5>
                   </div>
                 </div>
@@ -156,7 +163,10 @@ export default function Product({
                   <div className="border py-4 px-md-3 px-2 rounded">
                     <div className="d-flex justify-content-between">
                       <p className=" shipping">Khalifa Kush (AAAA)</p>
-                      <p className="fw-medium"><TbCurrencyNaira/>{item_price}</p>
+                      <p className="fw-medium">
+                        <TbCurrencyNaira />
+                        {item_price}
+                      </p>
                     </div>
                     <div className="weed2_txt d-flex justify-content-between p-3">
                       <div className="d-flex gap-2">
@@ -188,7 +198,8 @@ export default function Product({
                         </div>
                       </div>
                       <button className="py-2" onClick={() => addtocart()}>
-                        Add to Cart | <TbCurrencyNaira/>{item_sub}
+                        Add to Cart | <TbCurrencyNaira />
+                        {item_sub}
                       </button>
                     </div>
                     <div className="shipping">
@@ -196,7 +207,10 @@ export default function Product({
                         <img src={tick} alt="img" />
                         <p className="m-0">
                           Free Xpress Shipping on orders over{" "}
-                          <span className="text-warning"><TbCurrencyNaira/>25,500</span>
+                          <span className="text-warning">
+                            <TbCurrencyNaira />
+                            25,500
+                          </span>
                         </p>
                       </div>
                       <div className="d-flex align-items-center pb-1 gap-1">

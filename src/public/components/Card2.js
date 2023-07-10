@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addcart, getallItems } from "../utils/APIroutes";
 import { useNavigate } from "react-router-dom";
-import {TbCurrencyNaira} from "react-icons/tb";
+import { TbCurrencyNaira } from "react-icons/tb";
 
 export default function Card2({
   count,
@@ -13,6 +13,7 @@ export default function Card2({
   user_id,
   cartCount,
   setMycartCount,
+  token
 }) {
   const [items, setItems] = useState([]);
   const [item_sub, setItem_sub] = useState(0);
@@ -47,14 +48,20 @@ export default function Card2({
         sub_total: item_sub,
       };
 
-      axios.post(addcart, itemData).then((response) => {
-        toast.success("Item added successfully", toastOptions);
-        if (response.data.status === "UPDATED") {
-          setMycartCount((cartCount += 0));
-        } else {
-          setMycartCount((cartCount += 1));
-        }
-      });
+      axios
+        .post(addcart, itemData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          toast.success("Item added successfully", toastOptions);
+          if (response.data.status === "UPDATED") {
+            setMycartCount((cartCount += 0));
+          } else {
+            setMycartCount((cartCount += 1));
+          }
+        });
     } else {
       navigate("/login");
     }
@@ -78,7 +85,10 @@ export default function Card2({
                 <p className=" py-1 px-2">{item.strand}</p>
               </div>
               <div className="d-flex m-auto justify-content-evenly align-items-center w-6 pb-3 pt-2">
-                <h5 className="m-0"><TbCurrencyNaira/>{item.price}</h5>
+                <h5 className="m-0">
+                  <TbCurrencyNaira />
+                  {item.price}
+                </h5>
 
                 <p className="">/</p>
                 <div className="">gram</div>

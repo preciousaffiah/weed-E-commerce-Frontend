@@ -15,6 +15,7 @@ function App() {
   const [count, setCount] = useState(0);
   let user_id = JSON.parse(localStorage.getItem('loggedInUser'));
   const [cartCount, setMycartCount] = useState([0]);
+  let token = JSON.parse(localStorage.getItem('token'));
 
   useEffect(() => {
     if (user_id) {
@@ -32,18 +33,18 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
+            element={<Home token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
           />
           <Route path="/register" element={<Register user_id={user_id} />} />
           {/* <Route path="/mail" element={<Mail />} /> */}
-          <Route path="/login" element={<Login user_id={user_id} />} />
+          <Route path="/login" element={<Login user_id={user_id}/>} />
           <Route
             path="/shop"
-            element={<Category cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
+            element={<Category token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
           />
           <Route
             path="/product/:product_id"
-            element={<Product cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
+            element={<Product token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id} />}
           />
           <Route
             path="/cart"

@@ -9,7 +9,7 @@ import { login } from "../utils/APIroutes";
 import { BiHide } from "react-icons/bi";
 import { BiShow } from "react-icons/bi";
 
-export default function Login({ user_id }) {
+export default function Login({ user_id, token }) {
   const [passwordShown, setPasswordShown] = useState(false);
   const [email, setEmail] = useState(false);
   const [password, setPassword] = useState(false);
@@ -59,6 +59,11 @@ export default function Login({ user_id }) {
               "loggedInUser",
               JSON.stringify(response.data.data.user._id)
             );
+            localStorage.setItem(
+              "token",
+              JSON.stringify(response.data.data.token)
+            );
+            token = JSON.parse(localStorage.getItem("token"));
             user_id = JSON.parse(localStorage.getItem("loggedInUser"));
             window.location.assign("/");
           }
@@ -148,7 +153,8 @@ export default function Login({ user_id }) {
                           <div className="form-group">
                             {email === " " ||
                             password === " " ||
-                            email.length < 1 ? (
+                            email.length < 1 ||
+                            password.length < 1 ? (
                               <div className="col extra3 testimony_name">
                                 <p className="pt-4">
                                   Don't be scared, when you fill the form

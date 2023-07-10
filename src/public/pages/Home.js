@@ -17,8 +17,7 @@ import { GiChestnutLeaf } from "react-icons/gi";
 import Navbar from "../components/Navbar";
 
 
-export default function Home({ cartCount, setMycartCount, count, setCount, setUser_id, user_id }) {
-
+export default function Home({ cartCount, setMycartCount, count, setCount, setUser_id, user_id, token }) {
 
   return (
     <div className="container-fluid p-0 text-center">
@@ -97,7 +96,7 @@ export default function Home({ cartCount, setMycartCount, count, setCount, setUs
           </div>
           <div className="row row3">
             <div className="col-12">
-              <Card cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
+              <Card token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
         </div>
@@ -125,7 +124,7 @@ export default function Home({ cartCount, setMycartCount, count, setCount, setUs
 
           <div className="row row3 pb-4">
             <div className="col-12">
-              <Card2 cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
+              <Card2 token={token} cartCount={cartCount} setMycartCount={setMycartCount} count={count} setCount={setCount} user_id={user_id}/>
             </div>
           </div>
         </div>
